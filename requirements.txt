@@ -1,0 +1,10 @@
+# api
+fastapi==0.85.0
+uvicorn==0.18.3
+
+# stockfish
+stockfish==3.28.0
+
+# linters
+isort==5.10.1
+flake8==5.0.4
