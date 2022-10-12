@@ -1,1 +1,1 @@
-MATE_INFO = 'checkmate'
+MATE_MSG = 'checkmate'

@@ -11,3 +11,15 @@ class BestMoveResponse(BaseModel):
 
 class StatusResponse(BaseModel):
     version: str = Field(default='20122')
+    elo: int = Field(default=2800)
+    skill_level: int = Field(default=20)
+    threads: int = Field(default=1)
+
+
+class AnalyzePayload(BaseModel):
+    pgn: str
+    user: str
+
+
+class Analysis(BaseModel):
+    blunders: int

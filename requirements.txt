@@ -5,6 +5,9 @@ uvicorn==0.18.3
 # stockfish
 stockfish==3.28.0
 
+# chess
+chess==1.9.3
+
 # linters
 isort==5.10.1
 flake8==5.0.4
