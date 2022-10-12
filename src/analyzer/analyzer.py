@@ -1,10 +1,10 @@
 import io
-from chess import pgn
-from analyzer.enums import Pieces
 
-from models.stockfish import Analysis
+from chess import pgn
 from stockfish import Stockfish
 
+from analyzer.enums import Pieces
+from models.stockfish import Analysis
 
 
 class GameAnalyzer(object):
@@ -25,7 +25,6 @@ class GameAnalyzer(object):
             moves.append(move)
             self._set_new_position(moves=moves)
         return Analysis(blunders=blunders)
-
 
     def _initialize_board(self, game_pgn: pgn.Game) -> None:
         self.stockfish.set_fen_position(game_pgn.board().fen())
