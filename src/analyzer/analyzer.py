@@ -19,7 +19,6 @@ class GameAnalyzer(object):
         user_pieces = self._get_user_pieces(game_pgn=game_pgn, user=self.user)
         self._initialize_board(game_pgn=game_pgn)
         for move_no, move in enumerate(game_pgn.mainline_moves()):
-            # TODO verify if blunders are counted correctly
             if not self._is_move_correct(move=move) and self._is_user_turn(move_no=move_no, user_pieces=user_pieces):
                 blunders += 1
             moves.append(move)
@@ -37,7 +36,8 @@ class GameAnalyzer(object):
         return Pieces.WHITE if white_user == user else Pieces.BLACK
 
     def _is_move_correct(self, move: str) -> bool:
-        return self.stockfish.is_move_correct(move)
+        top_moves = [move['Move'] for move in self.stockfish.get_top_moves()]
+        return move in top_moves
 
     def _is_user_turn(self, move_no: int, user_pieces: Pieces) -> bool:
         return move_no % 2 and user_pieces == Pieces.BLACK

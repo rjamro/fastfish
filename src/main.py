@@ -6,7 +6,7 @@ from settings import settings
 
 app = FastAPI(
     title='FastFish',
-    description='The webserver designed to provide statistics for chess games using stockfish chess engine.'
+    description='The webserver designed to provide analysis for chess games using stockfish chess engine.'
 )
 app.include_router(stockfish.router)
 

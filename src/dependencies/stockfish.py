@@ -4,4 +4,9 @@ from settings import settings
 
 
 async def get_stockfish() -> Stockfish:
-    return Stockfish(settings.stockfish_path)
+    stockfish = Stockfish(settings.stockfish_path)
+    stockfish.update_engine_parameters({
+        'Threads': 4,
+        'Minimum Thinking Time': 1,
+    })
+    return stockfish
