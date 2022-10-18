@@ -19,7 +19,7 @@ async def get_chess_engine_status(stockfish: Stockfish = Depends(get_stockfish))
     )
 
 
-@router.post("/bestmove/", response_model=BestMoveResponse)
+@router.post("/bestmove/", response_model=BestMoveResponse, deprecated=True)
 async def get_best_move(payload: BestMovePayload, stockfish: Stockfish = Depends(get_stockfish)) -> BestMoveResponse:
     stockfish.set_fen_position(payload.fen_position)
     best_move = stockfish.get_best_move()
@@ -30,6 +30,6 @@ async def get_best_move(payload: BestMovePayload, stockfish: Stockfish = Depends
 
 
 @router.post('/analyze/', response_model=Analysis)
-async def analyze_game(payload: AnalyzePayload, stockfish: Stockfish = Depends(get_stockfish)) -> Analysis:
-    analyzer = GameAnalyzer(stockfish=stockfish, user=payload.user)
+def analyze_game(payload: AnalyzePayload, stockfish: Stockfish = Depends(get_stockfish)) -> Analysis:
+    analyzer = GameAnalyzer(user=payload.user, stockfish=stockfish)
     return analyzer.get_analysis(game=payload.pgn)

@@ -17,9 +17,10 @@ class StatusResponse(BaseModel):
 
 
 class AnalyzePayload(BaseModel):
-    pgn: str
-    user: str
+    pgn: str = Field(default='1. e4 2. e5')
+    user: str = Field(default="Hikaru")
 
 
 class Analysis(BaseModel):
-    blunders: int
+    blunders: int = Field(default=3)
+    total_moves: int = Field(default=43)
