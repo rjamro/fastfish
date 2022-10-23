@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, validator
 
 
 class BestMovePayload(BaseModel):
@@ -17,8 +17,15 @@ class StatusResponse(BaseModel):
 
 
 class AnalyzePayload(BaseModel):
-    pgn: str = Field(default='1. e4 2. e5')
+    pgn: str = Field(default='1. e4 e5')
     user: str = Field(default="Hikaru")
+
+    @validator('user')
+    def is_hans_niemann(cls, username):
+        if username == 'HansOnTwitch':
+            raise ValueError('Is Hans still playing?')
+
+        return username
 
 
 class Analysis(BaseModel):

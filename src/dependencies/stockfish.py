@@ -3,7 +3,7 @@ from stockfish import Stockfish
 from settings import settings
 
 
-async def get_stockfish() -> Stockfish:
+def get_stockfish() -> Stockfish:
     stockfish = Stockfish(settings.stockfish_path)
     stockfish.update_engine_parameters({
         'Threads': 4,
