@@ -11,6 +11,7 @@ class Settings(BaseSettings):
     def is_api_key_valid(cls, api_key: str | None) -> str:
         if len(api_key) < 32:
             raise ValueError('API KEY is too short and not safe enough.')
+        return api_key
 
     class Config:
         env_file = '.env'
